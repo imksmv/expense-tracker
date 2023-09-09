@@ -2,7 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { schema, FormData } from "../lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function Form() {
+export default function ExpenseForm() {
   const {
     register,
     handleSubmit,
