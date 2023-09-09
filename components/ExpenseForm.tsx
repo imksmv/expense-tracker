@@ -1,19 +1,27 @@
-import { FieldValues, useForm } from "react-hook-form";
-import { schema, FormData } from "../lib/schema";
+import categories from "./categories";
+import { useForm } from "react-hook-form";
+import { schema, ExpenseFormData } from "../lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { categories } from "../src/App";
 
-export default function ExpenseForm() {
+interface Props {
+  onSubmit: (data: ExpenseFormData) => void;
+}
+
+export default function ExpenseForm({ onSubmit }: Props) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
-
-  const onSubmit = (data: FieldValues) => console.log(data);
+  } = useForm<ExpenseFormData>({ resolver: zodResolver(schema) });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onSubmit(data);
+        reset();
+      })}
+    >
       {/* Description */}
       <div className="form-group mb-3">
         <label htmlFor="description" className="form-label">

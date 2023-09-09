@@ -3,8 +3,6 @@ import ExpenseList from "../components/ExpenseList.tsx";
 import ExpenseFilter from "../components/ExpenseFilter.tsx";
 import { useState } from "react";
 
-export const categories = ["Utilities", "Groceries", "Entertainment"];
-
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -22,7 +20,11 @@ export default function App() {
   return (
     <>
       <div className="mb-5">
-        <ExpenseForm />
+        <ExpenseForm
+          onSubmit={(expense) =>
+            setExpenses([...expenses, { ...expense, id: expenses.length + 1 }])
+          }
+        />
       </div>
       <div className="mb-3">
         <ExpenseFilter
