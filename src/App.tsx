@@ -19,6 +19,9 @@ export default function App() {
 
   return (
     <>
+      <h1 className="title d-flex justify-content-center my-5">
+        Expense Tracker
+      </h1>
       <div className="mb-5">
         <ExpenseForm
           onSubmit={(expense) =>
